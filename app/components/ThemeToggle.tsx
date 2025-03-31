@@ -28,12 +28,12 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
-    // Check cookie first, then localStorage, then system preference
+    // Check cookie first, then localStorage, then default to light
     const cookieTheme = getCookie('theme')
     const localTheme = localStorage.getItem('theme')
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     
-    const initialTheme = (cookieTheme || localTheme || (systemPrefersDark ? 'dark' : 'light')) as 'light' | 'dark'
+    // Use stored theme if available, otherwise default to light mode
+    const initialTheme = (cookieTheme || localTheme || 'light') as 'light' | 'dark'
     
     setTheme(initialTheme)
     setThemeOnDocument(initialTheme)

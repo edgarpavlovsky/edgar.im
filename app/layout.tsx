@@ -1,6 +1,12 @@
 import React from 'react'
 import ThemeToggle from './components/ThemeToggle'
+import ThemeInitializer from './components/ThemeInitializer'
 import './globals.css'
+
+export const metadata = {
+  title: 'Edgar Pavlovsky',
+  description: 'Technology entrepreneur',
+}
 
 export default function RootLayout({
   children,
@@ -10,36 +16,38 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* This script must run synchronously before anything renders to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                function getInitialTheme() {
-                  const persistedTheme = localStorage.getItem('theme')
-                  const hasPersistedTheme = typeof persistedTheme === 'string'
-
-                  if (hasPersistedTheme) {
-                    return persistedTheme
+                try {
+                  let theme = localStorage.getItem('theme');
+                  if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                   }
-
-                  const mql = window.matchMedia('(prefers-color-scheme: dark)')
-                  const hasMediaQueryPreference = typeof mql.matches === 'boolean'
-
-                  if (hasMediaQueryPreference) {
-                    return mql.matches ? 'dark' : 'light'
+                  
+                  document.documentElement.setAttribute('data-theme', theme);
+                  
+                  // Immediately apply theme colors to prevent any flash
+                  if (theme === 'dark') {
+                    document.documentElement.style.backgroundColor = '#151515';
+                    document.documentElement.style.color = '#f5f5f5';
+                  } else {
+                    document.documentElement.style.backgroundColor = 'white';
+                    document.documentElement.style.color = 'black';
                   }
-
-                  return 'light'
+                } catch (e) {
+                  // Fallback to light theme
+                  document.documentElement.setAttribute('data-theme', 'light');
                 }
-
-                const theme = getInitialTheme()
-                document.documentElement.setAttribute('data-theme', theme)
-              })()
+              })();
             `,
           }}
         />
       </head>
       <body>
+        <ThemeInitializer />
         {children}
         <ThemeToggle />
       </body>

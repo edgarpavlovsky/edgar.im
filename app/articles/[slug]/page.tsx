@@ -1,5 +1,7 @@
 import { getArticleBySlug, getAllArticles } from '../../../lib/articles'
 import styles from '../../page.module.css'
+import { notFound } from 'next/navigation'
+import ReactMarkdown from 'react-markdown'
 
 export async function generateStaticParams() {
   const articles = await getAllArticles()
@@ -16,14 +18,16 @@ export default async function ArticlePage({
   const article = await getArticleBySlug(slug)
 
   if (!article) {
-    return <div>Article not found</div>
+    notFound()
   }
 
   return (
     <main className={styles.main} style={{ lineHeight: 1.75 }}>
       <h1>{article.title}</h1>
       <p>{article.date}</p>
-      <div dangerouslySetInnerHTML={{ __html: article.content }} />
+      <div className="article-content">
+        <ReactMarkdown>{article.content}</ReactMarkdown>
+      </div>
       <p>
         <a href="/">← Back to home</a>
       </p>
