@@ -8,6 +8,12 @@ function setThemeOnDocument(theme: 'light' | 'dark') {
   // Also set on html and body for redundancy
   document.body.style.backgroundColor = theme === 'dark' ? '#151515' : 'white'
   document.body.style.color = theme === 'dark' ? '#f5f5f5' : 'black'
+  
+  // Update status bar color for mobile
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]')
+  if (themeColorMeta) {
+    themeColorMeta.setAttribute('content', theme === 'dark' ? '#151515' : 'white')
+  }
 }
 
 function setCookie(name: string, value: string, days: number) {
