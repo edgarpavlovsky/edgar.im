@@ -10,24 +10,24 @@ export default function ThemeScript() {
     >{`
       (function() {
         try {
+          // Try to get theme from localStorage
           let theme = localStorage.getItem('theme');
+          
+          // If no theme is stored, check cookies next
+          if (!theme) {
+            const themeCookie = document.cookie.split('; ').find(row => row.startsWith('theme='));
+            if (themeCookie) {
+              theme = themeCookie.split('=')[1];
+            }
+          }
+          
+          // If still no theme, use system preference
           if (!theme) {
             theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
           }
           
+          // Apply theme to document
           document.documentElement.setAttribute('data-theme', theme);
-          
-          // Immediately apply theme colors to prevent any flash
-          const bgColor = theme === 'dark' ? '#151515' : 'white';
-          const textColor = theme === 'dark' ? '#f5f5f5' : 'black';
-          document.documentElement.style.backgroundColor = bgColor;
-          document.documentElement.style.color = textColor;
-          
-          // Update theme-color meta tag for Android devices
-          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-          if (metaThemeColor) {
-            metaThemeColor.setAttribute('content', bgColor);
-          }
           
           // Update iOS status bar style
           const metaStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
@@ -35,12 +35,13 @@ export default function ThemeScript() {
             metaStatusBar.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
           }
           
-          // Make the page visible once theme is applied
-          document.documentElement.style.visibility = 'visible';
+          // Update theme-color meta tag
+          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', theme === 'dark' ? '#151515' : 'white');
+          }
         } catch (e) {
-          // Fallback to light theme
-          document.documentElement.setAttribute('data-theme', 'light');
-          document.documentElement.style.visibility = 'visible';
+          console.error('Theme initialization error:', e);
         }
       })();
     `}</Script>

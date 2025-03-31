@@ -4,26 +4,19 @@ import { useEffect, useState } from 'react'
 import styles from './ThemeToggle.module.css'
 
 function setThemeOnDocument(theme: 'light' | 'dark') {
+  // Set theme attribute which our CSS responds to
   document.documentElement.setAttribute('data-theme', theme)
-  
-  // Set background and text colors
-  const bgColor = theme === 'dark' ? '#151515' : 'white';
-  const textColor = theme === 'dark' ? '#f5f5f5' : 'black';
-  document.documentElement.style.backgroundColor = bgColor;
-  document.body.style.backgroundColor = bgColor;
-  document.documentElement.style.color = textColor;
-  document.body.style.color = textColor;
-  
-  // Update theme-color meta tag for Android devices
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-  if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', bgColor);
-  }
   
   // Update iOS status bar style
   const metaStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
   if (metaStatusBar) {
     metaStatusBar.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
+  }
+  
+  // Update theme-color meta tag
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', theme === 'dark' ? '#151515' : 'white');
   }
 }
 
