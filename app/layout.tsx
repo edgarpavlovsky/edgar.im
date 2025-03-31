@@ -1,12 +1,11 @@
 import React from 'react'
 import ThemeToggle from './components/ThemeToggle'
-import ThemeScript from './components/ThemeScript'
+import StatusBarTheme from './components/StatusBarTheme'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { cookies } from 'next/headers'
-import './theme-init.css'
 import './globals.css'
 import { Viewport } from 'next'
+import { Providers } from './providers'
 
 export const metadata = {
   title: 'Edgar Pavlovsky',
@@ -28,46 +27,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Get theme preference from cookies on the server
-  const cookieStore = cookies()
-  const themeCookie = cookieStore.get('theme')
-  const theme = themeCookie?.value || 'light'
-  
-  // Determine initial colors
-  const backgroundColor = theme === 'dark' ? '#151515' : 'white'
-  const textColor = theme === 'dark' ? '#f5f5f5' : 'black'
-  const statusBarStyle = theme === 'dark' ? 'black-translucent' : 'default'
-  
   return (
-    <html lang="en" data-theme={theme} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Server-side initial styles to avoid flash */}
-        <style>{`
-          :root {
-            background-color: ${backgroundColor};
-            color: ${textColor};
-          }
-        `}</style>
-        
         {/* iOS-specific meta tags for status bar appearance */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content={statusBarStyle} />
-        <meta name="theme-color" content={backgroundColor} />
-        <ThemeScript />
-        
-        {/* Non-JS users will have this style */}
-        <noscript>
-          <style>{`
-            html { visibility: visible !important; }
-            body { background-color: white; color: black; }
-          `}</style>
-        </noscript>
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
-      <body suppressHydrationWarning>
-        {children}
-        <ThemeToggle />
-        <Analytics />
-        <SpeedInsights />
+      <body>
+        <Providers>
+          {children}
+          <ThemeToggle />
+          <StatusBarTheme />
+          <Analytics />
+          <SpeedInsights />
+        </Providers>
       </body>
     </html>
   )

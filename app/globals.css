@@ -1,12 +1,14 @@
+/* Theme variables for light mode */
 :root {
-  --background: white;
-  --text: black;
+  --bg-color: white;
+  --text-color: black;
   --link-hover: gray;
 }
 
+/* Theme variables for dark mode */
 :root[data-theme="dark"] {
-  --background: #151515;
-  --text: #f5f5f5;
+  --bg-color: #151515;
+  --text-color: #f5f5f5;
   --link-hover: #8cd7f7;
 }
 
@@ -20,18 +22,13 @@ html, body {
   padding: 0;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--background);
-  color: var(--text);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Add padding for devices with notches (like iPhone X and newer) */
-body {
-  padding-top: var(--safe-area-inset-top);
-}
-
 a {
-  color: var(--text);
+  color: var(--text-color);
   text-decoration: underline;
   transition: color 0.2s ease;
 }
