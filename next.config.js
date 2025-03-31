@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Only use export in production, allowing dynamic routes in development
-  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+  // Use static export for production
+  output: 'export',
   reactStrictMode: true,
   trailingSlash: true,
-  // Generate a 404 page for handling invalid routes in static export
+  // Fix marked dependencies
   webpack: (config) => {
-    // This is to fix ESM issues with marked dependencies
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
