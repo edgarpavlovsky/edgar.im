@@ -1,6 +1,7 @@
 import { getArticleBySlug, getAllArticles } from '../../../lib/articles'
 import styles from '../../page.module.css'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
 
 // This function tells Next.js which paths to pre-render
 export async function generateStaticParams() {
@@ -37,10 +38,9 @@ export default async function ArticlePage({
     <main className={styles.main} style={{ lineHeight: 1.75 }}>
       <h1>{article.title}</h1>
       <p>{article.date}</p>
-      <div 
-        className="article-content"
-        dangerouslySetInnerHTML={{ __html: article.content }}
-      />
+      <div className="article-content">
+        <ReactMarkdown>{article.content}</ReactMarkdown>
+      </div>
       <p>
         <a href="/">← Back to home</a>
       </p>

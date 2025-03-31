@@ -1,6 +1,6 @@
 import React from 'react'
 import ThemeToggle from './components/ThemeToggle'
-import ThemeInitializer from './components/ThemeInitializer'
+import ThemeScript from './components/ThemeScript'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
@@ -27,44 +27,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ visibility: 'hidden' }}>
       <head>
         {/* iOS-specific meta tags for status bar appearance */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        
-        {/* This script must run synchronously before anything renders to prevent flash */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  let theme = localStorage.getItem('theme');
-                  if (!theme) {
-                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  }
-                  
-                  document.documentElement.setAttribute('data-theme', theme);
-                  
-                  // Immediately apply theme colors to prevent any flash
-                  if (theme === 'dark') {
-                    document.documentElement.style.backgroundColor = '#151515';
-                    document.documentElement.style.color = '#f5f5f5';
-                  } else {
-                    document.documentElement.style.backgroundColor = 'white';
-                    document.documentElement.style.color = 'black';
-                  }
-                } catch (e) {
-                  // Fallback to light theme
-                  document.documentElement.setAttribute('data-theme', 'light');
-                }
-              })();
-            `,
-          }}
-        />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="theme-color" content="#ffffff" />
+        <ThemeScript />
       </head>
       <body>
-        <ThemeInitializer />
         {children}
         <ThemeToggle />
         <Analytics />

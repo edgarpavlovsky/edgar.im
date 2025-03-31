@@ -5,9 +5,26 @@ import styles from './ThemeToggle.module.css'
 
 function setThemeOnDocument(theme: 'light' | 'dark') {
   document.documentElement.setAttribute('data-theme', theme)
-  // Also set on html and body for redundancy
-  document.body.style.backgroundColor = theme === 'dark' ? '#151515' : 'white'
-  document.body.style.color = theme === 'dark' ? '#f5f5f5' : 'black'
+  
+  // Set background and text colors
+  const bgColor = theme === 'dark' ? '#151515' : 'white';
+  const textColor = theme === 'dark' ? '#f5f5f5' : 'black';
+  document.documentElement.style.backgroundColor = bgColor;
+  document.body.style.backgroundColor = bgColor;
+  document.documentElement.style.color = textColor;
+  document.body.style.color = textColor;
+  
+  // Update theme-color meta tag for Android devices
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', bgColor);
+  }
+  
+  // Update iOS status bar style
+  const metaStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+  if (metaStatusBar) {
+    metaStatusBar.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
+  }
 }
 
 function setCookie(name: string, value: string, days: number) {

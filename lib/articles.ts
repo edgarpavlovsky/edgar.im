@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { marked } from 'marked'
 
 const articlesDirectory = path.join(process.cwd(), 'articles')
 
@@ -10,11 +9,6 @@ export type Article = {
   title: string
   date: string
   content: string
-}
-
-// Simple function to convert markdown to HTML using marked
-function parseMarkdown(content: string): string {
-  return marked(content) as string
 }
 
 export async function getAllArticles(): Promise<Article[]> {
@@ -35,7 +29,7 @@ export async function getAllArticles(): Promise<Article[]> {
         slug: fileName.replace(/\.md$/, ''),
         title: data.title,
         date: data.date,
-        content: parseMarkdown(content)
+        content: content
       }
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1))
@@ -53,7 +47,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       slug,
       title: data.title,
       date: data.date,
-      content: parseMarkdown(content)
+      content: content
     }
   } catch {
     return null
