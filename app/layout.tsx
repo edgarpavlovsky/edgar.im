@@ -1,6 +1,7 @@
 import React from 'react'
 import ThemeToggle from './components/ThemeToggle'
 import ThemeInitializer from './components/ThemeInitializer'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 export const metadata = {
@@ -50,6 +51,7 @@ export default function RootLayout({
         <ThemeInitializer />
         {children}
         <ThemeToggle />
+        <Analytics />
       </body>
     </html>
   )
