@@ -1,7 +1,8 @@
 import styles from './page.module.css'
 import Link from 'next/link'
 
-export default function NotFound() {
+// This is a special page for static export that will be rendered as 404.html
+export default function Custom404() {
   return (
     <main className={styles.main}>
       <h2>Page Not Found</h2>
