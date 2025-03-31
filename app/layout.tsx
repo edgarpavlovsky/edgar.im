@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add meta tags for mobile theme colors */}
+        {/* iOS-specific meta tags for status bar appearance */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         
         {/* This script must run synchronously before anything renders to prevent flash */}
         <script
@@ -50,13 +50,9 @@ export default function RootLayout({
                   if (theme === 'dark') {
                     document.documentElement.style.backgroundColor = '#151515';
                     document.documentElement.style.color = '#f5f5f5';
-                    // Set status bar color for dark mode
-                    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#151515');
                   } else {
                     document.documentElement.style.backgroundColor = 'white';
                     document.documentElement.style.color = 'black';
-                    // Set status bar color for light mode
-                    document.querySelector('meta[name="theme-color"]').setAttribute('content', 'white');
                   }
                 } catch (e) {
                   // Fallback to light theme

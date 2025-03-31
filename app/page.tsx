@@ -14,7 +14,7 @@ export default async function Home() {
         {articles.map((article) => (
           <li key={article.slug}>
             <a href={`/articles/${article.slug}`} style={{ textDecoration: 'none' }}>
-              {article.title} <span style={{ color: 'gray' }}>{article.date}</span>
+              {article.title} <span className={styles.articleDate}>{article.date}</span>
             </a>
           </li>
         ))}

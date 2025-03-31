@@ -36,4 +36,17 @@
   text-align: left;
   margin: 0 auto;
   max-width: 650px;
+}
+
+.articleDate {
+  color: gray;
+  display: inline;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .articleDate {
+    display: block;
+    margin-top: 3px;
+  }
 } 

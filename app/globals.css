@@ -2,6 +2,8 @@
   --background: white;
   --text: black;
   --link-hover: gray;
+  /* Add status bar area padding for iOS */
+  --safe-area-inset-top: env(safe-area-inset-top, 0);
 }
 
 :root[data-theme="dark"] {
@@ -23,6 +25,11 @@ html, body {
   background-color: var(--background);
   color: var(--text);
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Add padding for devices with notches (like iPhone X and newer) */
+body {
+  padding-top: var(--safe-area-inset-top);
 }
 
 a {

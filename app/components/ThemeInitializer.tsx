@@ -30,21 +30,9 @@ export default function ThemeInitializer() {
     if (theme === 'dark') {
       document.documentElement.style.backgroundColor = '#151515'
       document.documentElement.style.color = '#f5f5f5'
-      
-      // Update status bar color for mobile
-      const themeColorMeta = document.querySelector('meta[name="theme-color"]')
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', '#151515')
-      }
     } else {
       document.documentElement.style.backgroundColor = 'white'
       document.documentElement.style.color = 'black'
-      
-      // Update status bar color for mobile
-      const themeColorMeta = document.querySelector('meta[name="theme-color"]')
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', 'white')
-      }
     }
     
     // Make the page visible once the theme is applied
