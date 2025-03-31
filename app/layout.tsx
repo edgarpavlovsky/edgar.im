@@ -33,8 +33,7 @@ export default function RootLayout({
       <head>
         {/* iOS-specific meta tags for status bar appearance */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#f5f5f5" />
       </head>
       <body>
         <Providers>
