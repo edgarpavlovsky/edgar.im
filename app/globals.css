@@ -2,8 +2,6 @@
   --background: white;
   --text: black;
   --link-hover: gray;
-  /* Add status bar area padding for iOS */
-  --safe-area-inset-top: env(safe-area-inset-top, 0);
 }
 
 :root[data-theme="dark"] {
