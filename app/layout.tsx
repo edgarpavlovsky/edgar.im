@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './components/Header'
 import ThemeToggle from './components/ThemeToggle'
 import StatusBarTheme from './components/StatusBarTheme'
 import { Analytics } from '@vercel/analytics/react'
@@ -37,8 +38,11 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
+          <Header />
           {children}
-          <ThemeToggle />
+          <div className="desktop-theme-toggle">
+            <ThemeToggle />
+          </div>
           <StatusBarTheme />
           <Analytics />
           <SpeedInsights />

@@ -1,0 +1,47 @@
+.header {
+  display: none; /* Hidden by default on desktop */
+  width: 100%;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--bg-color);
+  height: 50px; /* Set a fixed height */
+  box-sizing: border-box;
+}
+
+.backLink {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  color: var(--text-color);
+  text-decoration: none;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+}
+
+.themeToggleWrapper {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .header {
+    display: flex; /* Show on mobile */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .backLink {
+    font-size: 1.125rem; /* Match article font size */
+    font-family: "Times New Roman", Times, serif;
+  }
+} 

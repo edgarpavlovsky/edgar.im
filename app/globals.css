@@ -37,18 +37,48 @@ a:hover {
   color: var(--link-hover);
 }
 
+/* Add styles for desktop theme toggle and back link */
+.desktop-theme-toggle,
+.desktop-back-link {
+  display: block;
+  margin-top: 30px;
+}
+
+/* Article content styles */
 .article-content {
   font-size: 1rem;
   line-height: 1.75;
   width: 100%;
+  margin-top: 20px;
 }
 
+/* Mobile styles */
 @media (max-width: 768px) {
+  .desktop-theme-toggle,
+  .desktop-back-link {
+    display: none;
+  }
+  
+  /* Add padding for the fixed header on mobile */
+  body {
+    padding-top: 70px;
+  }
+  
+  /* Increase article content size on mobile */
   .article-content {
     font-size: 1.125rem;
     line-height: 1.8;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+  }
+  
+  /* Ensure back link text uses proper font size */
+  header .backLink {
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 1.125rem !important;
+  }
+  
+  /* Theme toggle should be slightly smaller */
+  header .themeToggleWrapper button,
+  header .themeToggleWrapper span {
+    font-size: 1rem !important;
   }
 } 

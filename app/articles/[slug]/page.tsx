@@ -36,14 +36,14 @@ export default async function ArticlePage({
 
   return (
     <main className={styles.main} style={{ lineHeight: 1.75 }}>
-      <h1>{article.title}</h1>
-      <p>{article.date}</p>
+      <h1 style={{ marginBottom: '0.5rem' }}>{article.title}</h1>
+      <p style={{ marginBottom: '2rem', opacity: 0.7 }}>{article.date}</p>
       <div className="article-content">
         <ReactMarkdown>{article.content}</ReactMarkdown>
       </div>
-      <p>
-        <a href="/">← Back to home</a>
-      </p>
+      <div className="desktop-back-link">
+        <Link href="/">← Back to home</Link>
+      </div>
     </main>
   )
 } 

@@ -14,7 +14,7 @@
 }
 
 .main a {
-  color: var(--text);
+  color: var(--text-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -39,12 +39,19 @@
 }
 
 .articleDate {
-  color: gray;
+  color: var(--text-color);
+  opacity: 0.6;
   display: inline;
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
+  .main {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    padding-top: 30px; /* Increase padding at the top */
+  }
+  
   .articleDate {
     display: block;
     margin-top: 3px;
