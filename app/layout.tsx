@@ -30,11 +30,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* iOS-specific meta tags for status bar appearance */}
-        {/* <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#f5f5f5" /> */}
-      </head>
       <body>
         <Providers>
           <Header />
