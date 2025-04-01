@@ -14,15 +14,15 @@ export default function StatusBarTheme() {
     const currentTheme = resolvedTheme || theme
     
     // Update iOS status bar style
-    const metaStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
-    if (metaStatusBar) {
-      metaStatusBar.setAttribute('content', currentTheme === 'dark' ? 'black-translucent' : 'default')
-    }
+    // const metaStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
+    // if (metaStatusBar) {
+    //   metaStatusBar.setAttribute('content', currentTheme === 'dark' ? '#151515' : '#f5f5f5')
+    // }
     
     // Update theme-color meta tag
     const metaThemeColor = document.querySelector('meta[name="theme-color"]')
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', currentTheme === 'dark' ? '#151515' : 'white')
+      metaThemeColor.setAttribute('content', currentTheme === 'dark' ? '#151515' : '#f5f5f5')
     }
   }, [theme, resolvedTheme])
   
