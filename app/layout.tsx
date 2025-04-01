@@ -15,7 +15,7 @@ export const metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: light)', color: '#f5f5f5' },
     { media: '(prefers-color-scheme: dark)', color: '#151515' },
   ],
   width: 'device-width',
@@ -32,8 +32,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* iOS-specific meta tags for status bar appearance */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#f5f5f5" />
+        {/* <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#f5f5f5" /> */}
       </head>
       <body>
         <Providers>
